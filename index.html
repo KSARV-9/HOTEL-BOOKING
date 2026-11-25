@@ -1,140 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>StayEase Hotel Booking</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StayEase Hotel Booking</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
-<div class="logo">🏨 StayEase</div>
-<div>
-<button onclick="showLogin()">Login</button>
-<button onclick="showSignup()">Sign Up</button>
-<button onclick="myBookings()">My Bookings</button>
-</div>
+    <div class="logo">🏨 StayEase</div>
+    <div class="nav-actions">
+        <button onclick="showLogin()">Login</button>
+        <button onclick="showSignup()">Sign Up</button>
+        <button onclick="myBookings()">My Bookings</button>
+        <a href="#contact">Contact</a>
+    </div>
 </nav>
 
 <div class="hero">
-<div>
-<h1>Find Your Perfect Stay</h1>
-<p>Book comfortable hotels at the best prices</p>
-<button class="btn" onclick="document.getElementById('hotels').scrollIntoView()">Explore Hotels</button>
-</div>
+    <div>
+        <h1>Find Your Perfect Stay</h1>
+        <p>Book comfortable hotels at the best prices</p>
+        <button class="btn" onclick="document.getElementById('hotels').scrollIntoView()">
+            Explore Hotels
+        </button>
+    </div>
 </div>
 
 <div class="search">
-<input id="search" placeholder="Search hotel or city" oninput="filter()">
-<select id="city" onchange="filter()">
-<option value="">All Cities</option>
-<option>Hyderabad</option>
-<option>Goa</option>
-<option>Bangalore</option>
-<option>Chennai</option>
-<option>Delhi</option>
-<option>Manali</option>
-</select>
-<select id="price" onchange="filter()">
-<option value="">Any Price</option>
-<option value="2000">Under ₹2000</option>
-<option value="3000">Under ₹3000</option>
-<option value="5000">Under ₹5000</option>
-</select>
+    <input id="search" placeholder="Search hotel or city" oninput="filter()">
+
+    <select id="city" onchange="filter()">
+        <option value="">All Cities</option>
+        <option>Hyderabad</option>
+        <option>Goa</option>
+        <option>Bangalore</option>
+        <option>Chennai</option>
+        <option>Delhi</option>
+        <option>Manali</option>
+    </select>
+
+    <select id="price" onchange="filter()">
+        <option value="">Any Price</option>
+        <option value="2000">Under ₹2000</option>
+        <option value="3000">Under ₹3000</option>
+        <option value="5000">Under ₹5000</option>
+    </select>
 </div>
 
 <section id="hotels">
-<h2>Available Hotels</h2>
-<div class="grid" id="list"></div>
+    <h2>Available Hotels</h2>
+    <p class="section-note">Enjoy exclusive discounts on selected hotels!</p>
+    <div class="grid" id="list"></div>
 </section>
 
 <section id="my">
-<h2>My Bookings</h2>
-<div id="mylist"></div>
+    <h2>My Bookings</h2>
+    <div id="mylist"></div>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2>Contact StayEase</h2>
+    <p>Need help? Contact our customer support team.</p>
+
+    <div class="contact-grid">
+        <div class="contact-item">
+            <h3>📧 Email Support</h3>
+            <a href="mailto:support@stayease.com">
+                support@stayease.com
+            </a>
+        </div>
+
+        <div class="contact-item">
+            <h3>📞 Phone Support</h3>
+            <a href="tel:+919876543210">
+                +91 98765 43210
+            </a>
+        </div>
+
+        <div class="contact-item">
+            <h3>🕒 Working Hours</h3>
+            <p>Monday - Saturday</p>
+            <p>9 AM - 6 PM</p>
+        </div>
+    </div>
 </section>
 
 <footer>
-<h3>🏨 StayEase</h3>
-<p>Simple and convenient hotel booking platform</p>
-<p>support@stayease.com | +91 98765 43210</p>
+    <h3>🏨 StayEase</h3>
+    <p>Simple and convenient hotel booking platform</p>
+    <p>support@stayease.com | +91 98765 43210</p>
+    <p>© 2026 StayEase. All Rights Reserved.</p>
 </footer>
 
+<!-- LOGIN MODAL -->
 <div class="modal" id="login">
-<div class="box">
-<span class="close" onclick="closeAll()">×</span>
-<h2>Login</h2>
-<select id="type">
-<option value="customer">Customer</option>
-<option value="admin">Admin</option>
-</select>
-<input id="le" placeholder="Email">
-<input id="lp" type="password" placeholder="Password">
-<button class="btn" onclick="login()">Login</button>
-<p id="lm"></p>
-</div>
+    <div class="box">
+        <span class="close" onclick="closeAll()">×</span>
+        <h2>Login</h2>
+
+        <select id="type">
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <input id="le" type="email" placeholder="Email">
+        <input id="lp" type="password" placeholder="Password">
+
+        <button class="btn full-btn" onclick="login()">Login</button>
+        <p id="lm"></p>
+    </div>
 </div>
 
+<!-- SIGNUP MODAL -->
 <div class="modal" id="signup">
-<div class="box">
-<span class="close" onclick="closeAll()">×</span>
-<h2>Create Account</h2>
-<input id="sn" placeholder="Full Name">
-<input id="se" placeholder="Email">
-<input id="sp" placeholder="Phone">
-<input id="sx" type="password" placeholder="Password">
-<input id="sc" type="password" placeholder="Confirm Password">
-<button class="btn" onclick="signup()">Create Account</button>
-<p id="sm"></p>
-</div>
+    <div class="box">
+        <span class="close" onclick="closeAll()">×</span>
+        <h2>Create Account</h2>
+
+        <input id="sn" placeholder="Full Name">
+        <input id="se" type="email" placeholder="Email">
+        <input id="sp" type="tel" placeholder="Phone">
+        <input id="sx" type="password" placeholder="Password">
+        <input id="sc" type="password" placeholder="Confirm Password">
+
+        <button class="btn full-btn" onclick="signup()">Create Account</button>
+        <p id="sm"></p>
+    </div>
 </div>
 
+<!-- BOOKING MODAL -->
 <div class="modal" id="book">
-<div class="box">
-<span class="close" onclick="closeAll()">×</span>
-<h2>Book Hotel</h2>
-<div id="info"></div>
-<input id="in" type="date">
-<input id="out" type="date">
-<input id="guests" type="number" value="1" min="1">
-<button class="btn" onclick="book()">Confirm Booking</button>
-</div>
+    <div class="box">
+        <span class="close" onclick="closeAll()">×</span>
+        <h2>Book Hotel</h2>
+
+        <div id="info"></div>
+
+        <label>Check-in Date</label>
+        <input id="in" type="date">
+
+        <label>Check-out Date</label>
+        <input id="out" type="date">
+
+        <label>Number of Guests</label>
+        <input id="guests" type="number" value="1" min="1">
+
+        <button class="btn full-btn" onclick="book()">Confirm Booking</button>
+    </div>
 </div>
 
+<!-- ADMIN DASHBOARD -->
 <div class="admin" id="admin">
-<h1>🏨 Admin Dashboard</h1>
-<button class="btn" onclick="adminLogout()">Logout</button>
+    <h1>🏨 Admin Dashboard</h1>
 
-<div class="stats">
-<div class="stat">Bookings<b id="tb">0</b></div>
-<div class="stat">Customers<b id="tc">0</b></div>
-<div class="stat">Confirmed<b id="cb">0</b></div>
-<div class="stat">Revenue<b id="tr">₹0</b></div>
-</div>
+    <button class="btn" onclick="adminLogout()">Logout</button>
 
-<h2>Customer Bookings</h2>
+    <div class="stats">
+        <div class="stat">Bookings<b id="tb">0</b></div>
+        <div class="stat">Customers<b id="tc">0</b></div>
+        <div class="stat">Confirmed<b id="cb">0</b></div>
+        <div class="stat">Revenue<b id="tr">₹0</b></div>
+    </div>
 
-<div class="table">
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Customer</th>
-<th>Email</th>
-<th>Hotel</th>
-<th>City</th>
-<th>Check In</th>
-<th>Check Out</th>
-<th>Guests</th>
-<th>Amount</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody id="atable"></tbody>
-</table>
-</div>
+    <h2>Customer Bookings</h2>
+
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Hotel</th>
+                    <th>City</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Guests</th>
+                    <th>Discount</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="atable"></tbody>
+        </table>
+    </div>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
